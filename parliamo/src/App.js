@@ -46,57 +46,57 @@ function App() {
   const [conversation, setConversation] = useState([]);
   const [sendMessage, setSendMessage] = useState();
 
-  async function postMessage()
+  // async function postMessage()
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
 
-    const address = 'http://localhost:8080/message';
+  //   const address = 'http://localhost:8080/message';
 
-    const requestOptions = JSON.stringify ({
-      method: "POST",
-      headers: myHeaders,
-      body: payload,
-      redirect: "follow",
-    });
+  //   const requestOptions = JSON.stringify ({
+  //     method: "POST",
+  //     headers: myHeaders,
+  //     body: payload,
+  //     redirect: "follow",
+  //   });
 
-  const myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
+  // const myHeaders = new Headers();
+  // myHeaders.append("Content-Type", "application/json");
 
-  const postMessage = fetch(address, requestOptions)
-  .then((response) => response.json())
-  .then((chatMessage) => {
-    console.log('Success: ', chatMessage);
-  })
-  .catch((error) => 
-   console.error('Error: ', error);
-  );
-  }
+  // const postMessage = fetch(address, requestOptions)
+  // .then((response) => response.json())
+  // .then((chatMessage) => {
+  //   console.log('Success: ', chatMessage);
+  // })
+  // .catch((error) => 
+  //  console.error('Error: ', error);
+  // );
+  // }
 
-  const address = 'http://localhost:8080/message';
+  // const address = 'http://localhost:8080/message';
 
-  const requestOptions = JSON.stringify {
-    method: "POST",
-    headers: myHeaders,
-    body: payload,
-    redirect: "follow",
-  }
+  // const requestOptions = JSON.stringify {
+  //   method: "POST",
+  //   headers: myHeaders,
+  //   body: payload,
+  //   redirect: "follow",
+  // }
 
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+  //   const myHeaders = new Headers();
+  //   myHeaders.append("Content-Type", "application/json");
 
-    const postMessage = fetch(address), {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(chatMessage)
-    .then((response) => response.json())
-    .then((chatMessage) => {
-      console.log('Success: ', chatMessage);
-    })
-    .catch((error) => 
-     console.error('Error: ', error);
-  });
+  //   const postMessage = fetch(address), {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: JSON.stringify(chatMessage)
+  //   .then((response) => response.json())
+  //   .then((chatMessage) => {
+  //     console.log('Success: ', chatMessage);
+  //   })
+  //   .catch((error) => 
+  //    console.error('Error: ', error);
+  // });
 
   useEffect(() => {
     fetch("http://localhost:8080/message/1/2")
