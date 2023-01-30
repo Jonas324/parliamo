@@ -18,16 +18,32 @@ function Register(props) {
           };
     
   
-    function handleSubmit() {
-      console.log(jsonData)
-      // Send data to the backend via POST
-      fetch('http://localhost:8080/user/register', {  // Enter your IP address here
-  
-        method: 'POST', 
-        mode: 'cors', 
-        body: JSON.stringify(jsonData) // body data type must match "Content-Type" header
+    function handleSubmit(event) {
+        event.preventDefault();
 
-      },console.log("data sent"))      
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const payload = JSON.stringify({
+                username: username,
+                password: password,
+                "isAccountNonExpired": "true",
+                "isAccountNonLocked": "true",
+                "isCredentialsNonExpired": "true",
+                "isEnabled": "true"
+        });
+
+        const requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: payload,
+            redirect: 'follow'
+        }
+   
+      fetch('http://localhost:8080/user/register', requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.log("error", error));      
     }
 
   return (
