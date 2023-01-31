@@ -6,6 +6,7 @@ export const Login = (props) => {
     const [password, setPassword] = useState('');
 
     return(
+
         <>
         <form>
             <label htmlFor="username">username</label>
@@ -15,7 +16,8 @@ export const Login = (props) => {
             <button>Log in</button>
         </form>
         <a href="/register">Registrera</a>
-        </>   
+        </>
+        
     )
 }
 
