@@ -50,9 +50,11 @@ function Register(props) {
     <>
         <form onSubmit={handleSubmit}>
             <label htmlFor="username">Username</label>
-            <input value={username} onChange={(e) => setUsername(e.target.value)} type="username" placeholder="your username" />
+            <input value={username} onChange={(e) => setUsername(e.target.value)} 
+              type="username" placeholder="your username" />
             <label htmlFor="password">Password</label>
-            <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="*******"/>
+            <input value={password} onChange={(e) => setPassword(e.target.value)} 
+            type="password" placeholder="*******"/>
             <button type="submit">Register User</button>
         </form>
         <a href="/login">Logga in</a>
