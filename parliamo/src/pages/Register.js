@@ -5,18 +5,6 @@ function Register(props) {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
-
-    var jsonData =
-          {
-              "username":username,
-              "password":password,
-              "isAccountNonExpired":"true",
-              "isAccountNonLocked":"true",
-              "isCredentialsNonExpired":"true",
-              "isEnabled":"true"
-          };
-    
   
     function handleSubmit(event) {
         event.preventDefault();
