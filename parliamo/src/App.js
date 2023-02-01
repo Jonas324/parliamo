@@ -4,6 +4,7 @@ import Navbar from './Navbar'
 import Welcome from './pages/Welcome'
 import Register from './pages/Register';
 import Login from './pages/Login';
+import User from './pages/User';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
             <Route path="/" element={<Welcome />}/>
             <Route path="/register" element={<Register/>}/>
             <Route path="/login" element={<Login />}/>
+            <Route path="/user" element={<User />}/>
           </Routes>
         </div>
       </div>

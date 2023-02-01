@@ -13,11 +13,7 @@ function handleSubmit(event) {
 
     const payload = JSON.stringify({
             username: username,
-            password: password,
-            "isAccountNonExpired": "true",
-            "isAccountNonLocked": "true",
-            "isCredentialsNonExpired": "true",
-            "isEnabled": "true"
+            password: password
     });
 
     const requestOptions = {
@@ -42,7 +38,9 @@ return (
         <label htmlFor="password">Password</label>
         <input value={password} onChange={(e) => setPassword(e.target.value)} 
         type="password" placeholder="*******"/>
-        <button type="submit">Logga in</button>
+        <button type="submit">
+          <a href="/user">Logga in</a>
+        </button>
     </form>
     <a href="/register">Register</a>
 </>
