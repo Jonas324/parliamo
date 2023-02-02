@@ -34,7 +34,7 @@ function Register(props) {
         .then(response => response.json())
         .then(data => {
           localStorage.setItem("token", data.token)
-          localStorage.setItem("user", JSON.stringify (data.user))
+          localStorage.setItem("user", data.user)
           setIsLoggedIn(true)
           console.log(data.token);
           console.log(data.user);

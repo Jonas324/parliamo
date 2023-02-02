@@ -1,9 +1,9 @@
 import Navbar from "../Navbar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 
-function chatPage(){
+function Chatpage(){
       // const mockData =
   // [
   //     [
@@ -99,6 +99,12 @@ function chatPage(){
   //    console.error('Error: ', error);
   // });
 
+  var localUser = localStorage.getItem('user');
+  if (localUser) {
+    localUser = JSON.parse(localUser);  
+  }
+  var userId = localUser.userId;
+  console.log(userId);
   useEffect(() => {
     fetch("http://localhost:8080/message/1/2")
       .then((response) => response.json())
@@ -159,4 +165,4 @@ function chatPage(){
     )
 }
 
-export default chatpage;
+export default Chatpage;

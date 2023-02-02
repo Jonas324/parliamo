@@ -5,6 +5,7 @@ import Welcome from './pages/Welcome'
 import Register from './pages/Register';
 import Login from './pages/Login';
 import User from './pages/User';
+import Chatpage from "./pages/Chatpage";
 
 function App() {
 
@@ -18,6 +19,8 @@ function App() {
             <Route path="/register" element={<Register/>}/>
             <Route path="/login" element={<Login />}/>
             <Route path="/user" element={<User />}/>
+            <Route path="message/${userId}/2" element={<Chatpage />}/>
+
           </Routes>
         </div>
       </div>
