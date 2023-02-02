@@ -33,9 +33,11 @@ function Register(props) {
       fetch('http://localhost:8080/api/auth/register', requestOptions)
         .then(response => response.json())
         .then(data => {
-          // console.log(data);
           localStorage.setItem("token", data.token)
+          localStorage.setItem("user", JSON.stringify (data.user))
           setIsLoggedIn(true)
+          console.log(data.token);
+          console.log(data.user);
         })
         .catch((error) => console.log("error", error));      
     }

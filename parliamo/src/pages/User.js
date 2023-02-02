@@ -4,26 +4,34 @@ function UserData() {
   const [user, setUser] = useState('');
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    fetch("http://localhost:8080/user/getUser/morran")
-      .then((response) => response.json())
-      .then((data) => setUser(data))
-      .catch(error => setError(error));
-      
-  }, []);
+
+  var localUser = localStorage.getItem('user');
+  if (localUser) {
+    localUser = JSON.parse(localUser);
+  }
+
+  // useEffect(() => {
+  //   fetch(`http://localhost:8080/user/getUser/${localUser.userId}`)
+  //     .then((response) => response)
+  //     .then((data) => setUser(data))
+  //     .catch(error => setError(error));
+  //     console.log(id)
+  // }, []);
 
   if (error) {
     return <div>An error occurred: {error.message}</div>;
   }
 
-  if (!user) {
-    return <div>Loading...</div>;
-  }
-  console.log(user);
+  // if (!user) {
+  //   return <div>Loading...</div>;
+  // }
+  console.log("localUser" + localUser);
+  console.log(localUser.userId);
   return (
     <>
     <h1>Hej</h1>
-    <h2>{user.username}</h2>
+    <h2>{localUser.username}</h2>
+    <h2>{localUser.userId}</h2>
     </>
     
   );
