@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
 import Axios from 'axios';
+import { Navigate } from 'react-router-dom';
 
 function Register(props) {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
   
     function handleSubmit(event) {
         event.preventDefault();
@@ -28,11 +30,19 @@ function Register(props) {
             redirect: 'follow'
         }
    
-      fetch('http://localhost:8080/user/register', requestOptions)
-        .then((response) => response.text())
-        .then((result) => console.log(result))
+      fetch('http://localhost:8080/api/auth/register', requestOptions)
+        .then(response => response.json())
+        .then(data => {
+          // console.log(data);
+          localStorage.setItem("token", data.token)
+          setIsLoggedIn(true)
+        })
         .catch((error) => console.log("error", error));      
     }
+
+    if (isLoggedIn) {
+    return <Navigate to="/User" />;
+  }
 
   return (
     <>

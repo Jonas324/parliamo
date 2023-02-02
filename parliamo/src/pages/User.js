@@ -1,30 +1,31 @@
 import React, { useState, useEffect } from "react";
 
 function UserData() {
-  const [data, setData] = useState('');
+  const [user, setUser] = useState('');
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch("http://localhost:8080/user")
-      .then(response => response.json())
-      .then(data => setData(data))
+    fetch("http://localhost:8080/user/getUser/morran")
+      .then((response) => response.json())
+      .then((data) => setUser(data))
       .catch(error => setError(error));
+      
   }, []);
 
   if (error) {
     return <div>An error occurred: {error.message}</div>;
   }
 
-  if (!data) {
+  if (!user) {
     return <div>Loading...</div>;
   }
-
+  console.log(user);
   return (
-    <ul>
-      {data.map(item => (
-        <li key={item.id}>{item.username}</li>
-      ))}
-    </ul>
+    <>
+    <h1>Hej</h1>
+    <h2>{user.username}</h2>
+    </>
+    
   );
 }
 

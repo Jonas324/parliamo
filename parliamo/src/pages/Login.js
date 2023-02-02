@@ -23,7 +23,7 @@ function handleSubmit(event) {
         redirect: 'follow'
     }
 
-  fetch('http://localhost:8080/login', requestOptions)
+  fetch('http://localhost:8080/api/auth/login', requestOptions)
     .then((response) => response.text())
     .then((result) => console.log(result))
     .catch((error) => console.log("error", error));      
