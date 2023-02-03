@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
 
-function Register(props) {
+function Login(props) {
 
 const [username, setUsername] = useState('');
 const [password, setPassword] = useState('');
+const [isLoggedIn, setIsLoggedIn] = useState(false)
 
 function handleSubmit(event) {
     event.preventDefault();
@@ -23,10 +25,20 @@ function handleSubmit(event) {
         redirect: 'follow'
     }
 
-  fetch('http://localhost:8080/api/auth/login', requestOptions)
-    .then((response) => response.text())
-    .then((result) => console.log(result))
+    fetch('http://localhost:8080/api/auth/login', requestOptions)
+    .then(response => response.json())
+    .then(data => {
+      localStorage.setItem("token", data.token)
+      localStorage.setItem("user", data.user)
+      setIsLoggedIn(true)
+      console.log(data.token);
+      console.log(data.user);
+    })
     .catch((error) => console.log("error", error));      
+}
+
+if  (isLoggedIn) {
+  return <Navigate to="/User"/>
 }
 
 return (
@@ -47,4 +59,4 @@ return (
 );
 }
 
-export default Register;
+export default Login;
