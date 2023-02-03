@@ -19,7 +19,7 @@ function App() {
             <Route path="/register" element={<Register/>}/>
             <Route path="/login" element={<Login />}/>
             <Route path="/user" element={<User />}/>
-            <Route path="message/${userId}/2" element={<Chatpage />}/>
+            <Route path="/message" element={<Chatpage />}/>
 
           </Routes>
         </div>
