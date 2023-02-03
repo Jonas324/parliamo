@@ -8,6 +8,7 @@ function Chatpage(){
   
   const [conversation, setConversation] = useState();
   const [sendMessage, setSendMessage] = useState();
+  const [userList, setUserList] = useState();
 
   var localUser = localStorage.getItem('user');
   if (localUser) {
@@ -23,7 +24,7 @@ function Chatpage(){
     if (!token) {
       window.location.href = "/login";
     } else {
-      var fetchChat = fetch("http://localhost:8080/message/1152/1202")
+      var fetchChat = fetch(`http://localhost:8080/message/302/${userId}`)
         .then((response) => response.json())
         .then((data) => setConversation(data))
         .catch((error) => console.error(error));
