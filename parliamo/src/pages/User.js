@@ -38,7 +38,7 @@ function UserData() {
     <h2>{localUser.userId}</h2>
 
     <button>
-    <a href="/message">Chatpage</a>
+    <a href="/conversations">Conversations</a>
     </button>
     
     </>

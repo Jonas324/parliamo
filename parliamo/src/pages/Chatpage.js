@@ -17,6 +17,12 @@ function Chatpage(){
   var userId = localUser.userId;
   console.log(userId)
 
+  var chosenUser = localStorage.getItem('chosenUser');
+  if (chosenUser) {
+    chosenUser = JSON.parse(chosenUser);  
+  }
+  var chosenUserId = chosenUser.id;
+
  
    
   useEffect(() => {
@@ -24,7 +30,7 @@ function Chatpage(){
     if (!token) {
       window.location.href = "/login";
     } else {
-      var fetchChat = fetch(`http://localhost:8080/message/302/${userId}`)
+      var fetchChat = fetch(`http://localhost:8080/message/${chosenUser}/${userId}`)
         .then((response) => response.json())
         .then((data) => setConversation(data))
         .catch((error) => console.error(error));
@@ -44,15 +50,17 @@ function Chatpage(){
     <h1>Chat app</h1>
      <div className="chatwindow">
       {conversationFlatAndSorted?.map((item) => {
-        if (item?.senderId === 1) {
+        if (item?.senderId === chosenUser) {
           return (
-            <p key={item?.id} className="sender">
+            <p style={{color:"red"}} key={item?.id} className="sender">
               {item.content}
             </p>
           );
         } else
           return (
-            <p key={item?.id} className="receiver">
+            <p style={{
+                color:"blue"}} 
+              key={item?.id} className="receiver">
               {item.content}
             </p>
           );

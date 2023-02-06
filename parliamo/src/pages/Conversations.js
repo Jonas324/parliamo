@@ -4,9 +4,10 @@ import { useEffect, useState } from 'react';
 
 function Conversations(){
 
-
-  
-const [userList, setUserList] = useState();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [userList, setUserList] = useState();
+  const [chosenUser, setChosenUser] = useState('');
 
   var localUser = localStorage.getItem('user');
   if (localUser) {
@@ -14,44 +15,61 @@ const [userList, setUserList] = useState();
   }
   var userId = localUser.userId;
   console.log(userId)
-
- 
    
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
       window.location.href = "/login";
     } else {
-      var fetchAllUsers = fetch(`http://localhost:8080/user/getAllUsers`)
+      var fetchAllUsers = fetch("http://localhost:8080/user/getAllUsers")
         .then((response) => response.json())
         .then((data) => setUserList(data))
         .catch((error) => console.error(error));
-      console.log(userList);
       }
-  }, [userList]); 
+  }, []); 
 
-  var usersFlatAndSorted = userList ? userList.flat(1) : [];
-  console.log(usersFlatAndSorted);
+  const saveData = () => {
+    localStorage.setItem('chosenUser', chosenUser);
+  };
 
-  const [selectedUsers, setSelectedUsers] = useState(userList[0].userId);
+ /*  var usersFlatAndSorted = userList ? userList.flat(1) : [];
+  console.log(usersFlatAndSorted); */
+
+/*   const [selectedUsers, setSelectedUsers] = useState(userList.userId);
   const handleChange = event => {
-    setSelectedUsers(event.target.value);
+    setSelectedUsers(event.target.value); */
 
 //TODO Få till dropdown meny där man kan se och välja vilken motpart man vill chatta med i chatpage.
 
-  };
+
     return(
     <div className="App">
-    <select value={selectedUsers} onChange={handleChange}>
-      {userList.map(option => (
-        <option key={option.id} value={option.value}>
-          {option.value}
-        </option>
-      ))}
-    </select>
+      <h1>Pick user to chatt with</h1>
+      <p> Chossen user to chat with: {chosenUser}</p>
+    
+    <button onClick={saveData}>
+      <a href='/message'> Start chat </a>
+    </button>
+
+    <select
+            className="form-control"
+            onChange={(event) => {
+              setChosenUser(event.target.value);
+              localStorage.setItem("chosenUser", chosenUser);
+            }}
+          >
+            <option selected="true" disabled="disabled">
+              Username
+            </option>
+            {userList && userList.map((item, index) => (
+              <option key={index} value={item.id}>
+                {item.username}
+              </option>
+            ))}
+          </select>
     </div>
     )
-}
+};
   export default Conversations
 
 
