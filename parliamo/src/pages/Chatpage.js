@@ -14,7 +14,6 @@ function Chatpage(){
     localUser = JSON.parse(localUser);  
   }
   var userId = localUser.userId;
-  console.log(userId)
 
   var chosenUser = localStorage.getItem('chosenUser');
   if (chosenUser) {
@@ -27,19 +26,26 @@ function Chatpage(){
     if (!token) {
       window.location.href = "/login";
     } else {
-      var fetchChat = fetch(`http://localhost:8080/message/${chosenUser}/${userId}`)
-        .then((response) => response.json())
-        .then((data) => setConversation(data))
-        .catch((error) => console.error(error));
-      console.log(conversation);
-      }
-  }, []); 
+      const fetchData = () => {
+        fetch(`http://localhost:8080/message/${chosenUser}/${userId}`)
+          .then((response) => response.json())
+          .then((data) => setConversation(data))
+          .catch((error) => console.error(error));
+      };
+  
+      const intervalId = setInterval(fetchData, 2000);
+  
+      return () => {
+        clearInterval(intervalId);
+      };
+    }
+  }, []);
 
   var conversationFlatAndSorted = conversation ? conversation.flat(1) : [];
 
     conversationFlatAndSorted.sort(function (a, b) {
     return parseFloat(a.id) - parseFloat(b.id);
-  });
+});
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -51,17 +57,18 @@ function handleSubmit(event) {
     senderId: localUser.userId,
     receiverId: chosenUser,
     content: content
-});
+  });
 
-const requestOptions = {
-  method: 'POST',
-  headers: myHeaders,
-  body: payload,
-}
+  const requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: payload,
+  }
 
-fetch('http://localhost:8080/message', requestOptions)
-.then(response => response.json());
+  fetch('http://localhost:8080/message', requestOptions)
+  .then(response => response.json());
 
+  event.target.reset();
 
 };
 
