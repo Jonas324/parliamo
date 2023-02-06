@@ -26,16 +26,16 @@ function handleSubmit(event) {
     }
 
     fetch('http://localhost:8080/api/auth/login', requestOptions)
-    .then(response => response.json())
-    .then(data => {
-      localStorage.setItem("token", data.token)
-      localStorage.setItem("user", data.user)
-      setIsLoggedIn(true)
-      console.log(data.token);
-      console.log(data.user);
-    })
-    .catch((error) => console.log("error", error));      
-}
+        .then(response => response.json())
+        .then(data => {
+          localStorage.setItem("token", (data.token))
+          localStorage.setItem("user", (data.user))
+          setIsLoggedIn(true)
+          console.log(data.token);
+          console.log(data.user);
+        })
+        .catch((error) => console.log("error", error));      
+    }
 
 if  (isLoggedIn) {
   return <Navigate to="/User"/>

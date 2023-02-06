@@ -29,13 +29,13 @@ function UserData() {
   } */
 
   console.log("localUser" + localUser);
-  console.log(localUser.userId);
+  console.log(localUser.id);
 
   return (
     <>
     <h1>Hej</h1>
     <h2>{localUser.username}</h2>
-    <h2>{localUser.userId}</h2>
+    <h2>{localUser.id}</h2>
 
     <button>
     <a href="/conversations">Conversations</a>
