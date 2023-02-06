@@ -10,7 +10,7 @@ function UserData() {
     localUser = JSON.parse(localUser);  
   }
 
-   // useEffect(() => {
+  // useEffect(() => {
   //   fetch(`http://localhost:8080/user/getUser/${localUser.userId}`)
   //     .then((response) => response)
   //     .then((data) => setUser(data))
