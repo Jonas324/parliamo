@@ -24,12 +24,12 @@ function UserData() {
     return <div>An error occurred: {error.message}</div>;
   }
 
- /*  if (!data) {
-    return <div>Loading...</div>;
-  } */
-
-  console.log("localUser" + localUser);
-  console.log(localUser.id);
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("chosenUser");
+    window.location.href = "/";
+  };
 
   return (
     <>
@@ -41,6 +41,12 @@ function UserData() {
     <a href="/conversations">Conversations</a>
     </button>
     
+    <button
+      onClick={logout}
+    >
+    Logga ut
+    </button>
+
     </>
   );
 }
