@@ -15,11 +15,8 @@ function handleSubmit(event) {
 
     const payload = JSON.stringify({
             username: username,
-            password: password,
-            "isAccountNonExpired": "true",
-            "isAccountNonLocked": "true",
-            "isCredentialsNonExpired": "true",
-            "isEnabled": "true"
+            password: password
+            
     });
 
     const requestOptions = {
