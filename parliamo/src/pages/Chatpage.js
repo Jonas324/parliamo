@@ -1,4 +1,3 @@
-import Navbar from "../Navbar";
 import { useState, useEffect } from "react";
 import Logout from "../Components/Logout";
 
@@ -8,17 +7,37 @@ function Chatpage(){
   
   const [conversation, setConversation] = useState();
   const [content, setContent] = useState('');
+  const [joke, setJoke] = useState('');
 
   var localUser = localStorage.getItem('user');
   if (localUser) {
     localUser = JSON.parse(localUser);  
   }
   var userId = localUser.userId;
-  console.log(userId)
 
   var chosenUser = localStorage.getItem('chosenUser');
   if (chosenUser) {
     chosenUser = JSON.parse(chosenUser);
+  }
+
+  const fetchJoke = async () => {
+    try {
+      const response = await fetch(`https://v2.jokeapi.dev/joke/Programming,Miscellaneous,Dark,Pun,Spooky,Christmas?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single`);
+      const data = await response.json();
+      setJoke(data.joke);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
+  useEffect(() => {
+      fetchJoke();
+    }, [])
+
+  const getJoke = (event) => {
+    event.preventDefault();
+    fetchJoke();
   }
 
 
@@ -27,19 +46,26 @@ function Chatpage(){
     if (!token) {
       window.location.href = "/login";
     } else {
-      var fetchChat = fetch(`http://localhost:8080/message/${chosenUser}/${userId}`)
-        .then((response) => response.json())
-        .then((data) => setConversation(data))
-        .catch((error) => console.error(error));
-      console.log(conversation);
-      }
-  }, []); 
+      const fetchData = () => {
+        fetch(`http://localhost:8080/message/${chosenUser}/${userId}`)
+          .then((response) => response.json())
+          .then((data) => setConversation(data))
+          .catch((error) => console.error(error));
+      };
+  
+      const intervalId = setInterval(fetchData, 2000);
+  
+      return () => {
+        clearInterval(intervalId);
+      };
+    }
+  }, []);
 
   var conversationFlatAndSorted = conversation ? conversation.flat(1) : [];
 
     conversationFlatAndSorted.sort(function (a, b) {
     return parseFloat(a.id) - parseFloat(b.id);
-  });
+});
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -51,17 +77,18 @@ function handleSubmit(event) {
     senderId: localUser.userId,
     receiverId: chosenUser,
     content: content
-});
+  });
 
-const requestOptions = {
-  method: 'POST',
-  headers: myHeaders,
-  body: payload,
-}
+  const requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: payload,
+  }
 
-fetch('http://localhost:8080/message', requestOptions)
-.then(response => response.json());
+  fetch('http://localhost:8080/message', requestOptions)
+  .then(response => response.json());
 
+  event.target.reset();
 
 };
 
@@ -93,6 +120,13 @@ fetch('http://localhost:8080/message', requestOptions)
         </label>
         <button type="submit">Send message</button>
       </form>
+      <button onClick={getJoke}>
+        Stale conversation? Open with a joke:
+      </button>
+      <p style={{color: "green"}}>Copy and paste the following joke if you like it</p>
+      <p>
+        {joke}
+      </p>
     </div>
     <Logout></Logout> 
   </div>

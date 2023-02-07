@@ -11,7 +11,7 @@ function UserData() {
     localUser = JSON.parse(localUser);  
   }
 
-   // useEffect(() => {
+  // useEffect(() => {
   //   fetch(`http://localhost:8080/user/getUser/${localUser.userId}`)
   //     .then((response) => response)
   //     .then((data) => setUser(data))
@@ -29,7 +29,7 @@ function UserData() {
     <>
     <h1>Hej</h1>
     <h2>{localUser.username}</h2>
-    <h2>{localUser.id}</h2>
+    <h2>{localUser.userId}</h2>
 
     <button>
     <a href="/conversations">Conversations</a>
