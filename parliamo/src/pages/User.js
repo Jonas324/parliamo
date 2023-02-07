@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Logout from "../Components/Logout";
 
 function UserData() {
   const [user, setUser] = useState('');
@@ -24,13 +25,6 @@ function UserData() {
     return <div>An error occurred: {error.message}</div>;
   }
 
-  const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    localStorage.removeItem("chosenUser");
-    window.location.href = "/";
-  };
-
   return (
     <>
     <h1>Hej</h1>
@@ -41,11 +35,7 @@ function UserData() {
     <a href="/conversations">Conversations</a>
     </button>
     
-    <button
-      onClick={logout}
-    >
-    Logga ut
-    </button>
+    <Logout></Logout>
 
     </>
   );

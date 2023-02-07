@@ -1,6 +1,6 @@
 import Navbar from "../Navbar";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import Logout from "../Components/Logout";
 
 
 
@@ -93,7 +93,8 @@ fetch('http://localhost:8080/message', requestOptions)
         </label>
         <button type="submit">Send message</button>
       </form>
-    </div> 
+    </div>
+    <Logout></Logout> 
   </div>
     )
 };

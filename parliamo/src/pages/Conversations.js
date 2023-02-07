@@ -1,5 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
+import Logout from "../Components/Logout"
 
 
 function Conversations(){
@@ -45,7 +46,7 @@ function Conversations(){
     return(
     <div className="App">
       <h1>Pick user to chatt with</h1>
-      <p> Chossen user to chat with: {chosenUser}</p>
+      <p> Chosen user to chat with: {chosenUser}</p>
     
     <button onClick={saveData}>
       <a href='/message'> Start chat </a>
@@ -67,6 +68,7 @@ function Conversations(){
               </option>
             ))}
           </select>
+          <Logout></Logout>
     </div>
     )
 };
