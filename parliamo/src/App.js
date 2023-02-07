@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import User from './pages/User';
 import Chatpage from "./pages/Chatpage";
 import Conversations from "./pages/Conversations";
+import DeleteUser from "./pages/DeleteUser";
 
 function App() {
 
@@ -22,7 +23,7 @@ function App() {
             <Route path="/user" element={<User />}/>
             <Route path="/message" element={<Chatpage />}/>
             <Route path="/conversations" element={<Conversations />}/>
-
+            <Route path="/deleteUser" element={<DeleteUser />}/>
           </Routes>
         </div>
       </div>

@@ -34,6 +34,10 @@ function UserData() {
     <button>
     <a href="/conversations">Conversations</a>
     </button>
+
+    <button>
+    <a href="/deleteUser">Delete user</a>
+    </button>
     
     <Logout></Logout>
 
