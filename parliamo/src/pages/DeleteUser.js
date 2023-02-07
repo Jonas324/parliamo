@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Logout from "../Components/Logout";
 
 function DeleteUser(){
 
@@ -28,20 +29,10 @@ function DeleteUser(){
           }
       }, []); 
 
-      const logout = () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        localStorage.removeItem("chosenUser");
-        window.location.href = "/";
-      };
+
 
     return(
-        <div>
-            <h1>User deleted</h1>
-            <button onClick={logout}>
-               <a href="/Login">Logga in</a>
-            </button>
-        </div>
+        <Logout />
     );
 }
 
