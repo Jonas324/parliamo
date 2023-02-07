@@ -1,13 +1,10 @@
-import Navbar from "../Navbar";
 import { useState, useEffect } from "react";
-import axios from "axios";
-
-
 
 function Chatpage(){
   
   const [conversation, setConversation] = useState();
   const [content, setContent] = useState('');
+  const [joke, setJoke] = useState('');
 
   var localUser = localStorage.getItem('user');
   if (localUser) {
@@ -18,6 +15,26 @@ function Chatpage(){
   var chosenUser = localStorage.getItem('chosenUser');
   if (chosenUser) {
     chosenUser = JSON.parse(chosenUser);
+  }
+
+  const fetchJoke = async () => {
+    try {
+      const response = await fetch(`https://v2.jokeapi.dev/joke/Programming,Miscellaneous,Dark,Pun,Spooky,Christmas?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single`);
+      const data = await response.json();
+      setJoke(data.joke);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
+  useEffect(() => {
+      fetchJoke();
+    }, [])
+
+  const getJoke = (event) => {
+    event.preventDefault();
+    fetchJoke();
   }
 
 
@@ -100,6 +117,13 @@ function handleSubmit(event) {
         </label>
         <button type="submit">Send message</button>
       </form>
+      <button onClick={getJoke}>
+        Stale conversation? Open with a joke:
+      </button>
+      <p style={{color: "green"}}>Copy and paste the following joke if you like it</p>
+      <p>
+        {joke}
+      </p>
     </div> 
   </div>
     )
