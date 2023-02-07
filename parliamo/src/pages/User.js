@@ -11,13 +11,19 @@ function UserData() {
     localUser = JSON.parse(localUser);  
   }
 
-  // useEffect(() => {
-  //   fetch(`http://localhost:8080/user/getUser/${localUser.userId}`)
-  //     .then((response) => response)
-  //     .then((data) => setUser(data))
-  //     .catch(error => setError(error));
-  //     console.log(id)
-  // }, []);
+
+  const adminPage = localUser.role === 'ROLE_ADMIN' ? (
+    <button> 
+      <a href="/readAllMessages">Message bank</a>
+    
+    </button>
+  ) : null;
+  
+
+
+  
+
+
 
 
   
@@ -38,6 +44,8 @@ function UserData() {
     <button>
     <a href="/deleteUser">Delete user</a>
     </button>
+
+    <div>{adminPage}</div>
     
     <Logout></Logout>
 

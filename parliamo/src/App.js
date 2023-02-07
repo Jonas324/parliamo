@@ -8,6 +8,7 @@ import User from './pages/User';
 import Chatpage from "./pages/Chatpage";
 import Conversations from "./pages/Conversations";
 import DeleteUser from "./pages/DeleteUser";
+import ReadAllMessages from "./pages/ReadAllMessages";
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
             <Route path="/message" element={<Chatpage />}/>
             <Route path="/conversations" element={<Conversations />}/>
             <Route path="/deleteUser" element={<DeleteUser />}/>
+            <Route path="/readAllMessages" element={<ReadAllMessages />}/>
           </Routes>
         </div>
       </div>
