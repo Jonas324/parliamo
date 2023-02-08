@@ -13,9 +13,11 @@ function DeleteUser(){
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
+    const token = localStorage.getItem("token");
     const requestOptions = {
         method: 'DELETE',
-        headers: myHeaders,
+        headers: {'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`}
     }
 
     useEffect(() => {
@@ -32,7 +34,11 @@ function DeleteUser(){
 
 
     return(
+      <div>
+        <p>Your account hass been removed</p>
         <Logout />
+      </div>
+        
     );
 }
 

@@ -15,10 +15,8 @@ function Conversations(){
     localUser = JSON.parse(localUser);  
   }
   var userId = localUser.userId;
-  console.log(userId)
 
   const token = localStorage.getItem("token");
-  console.log(token);
 
     const requestOptions = {
       method: 'GET',

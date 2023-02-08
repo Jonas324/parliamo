@@ -19,14 +19,6 @@ function UserData() {
     </button>
   ) : null;
   
-
-
-  
-
-
-
-
-  
   if (error) {
     return <div>An error occurred: {error.message}</div>;
   }

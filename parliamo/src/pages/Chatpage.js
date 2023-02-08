@@ -40,6 +40,15 @@ function Chatpage(){
     fetchJoke();
   }
 
+  const token = localStorage.getItem("token");
+  const requestOptionsSenderReceiver = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+  }
+
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -47,7 +56,7 @@ function Chatpage(){
       window.location.href = "/login";
     } else {
       const fetchData = () => {
-        fetch(`http://localhost:8080/message/${chosenUser}/${userId}`)
+        fetch(`http://localhost:8080/message/${chosenUser}/${userId}`, requestOptionsSenderReceiver)
           .then((response) => response.json())
           .then((data) => setConversation(data))
           .catch((error) => console.error(error));
@@ -81,7 +90,8 @@ function handleSubmit(event) {
 
   const requestOptions = {
     method: 'POST',
-    headers: myHeaders,
+    headers: {'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`},
     body: payload,
   }
 
