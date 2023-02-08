@@ -16,13 +16,24 @@ function Conversations(){
   }
   var userId = localUser.userId;
   console.log(userId)
+
+  const token = localStorage.getItem("token");
+  console.log(token);
+
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    }
    
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
       window.location.href = "/login";
     } else {
-      var fetchAllUsers = fetch("http://localhost:8080/user/getAllUsers")
+      var fetchAllUsers = fetch("http://localhost:8080/user/getAllUsers", requestOptions)
         .then((response) => response.json())
         .then((data) => setUserList(data))
         .catch((error) => console.error(error));
@@ -53,15 +64,14 @@ function Conversations(){
     </button>
 
     <select
+            value="username"
             className="form-control"
             onChange={(event) => {
               setChosenUser(event.target.value);
               localStorage.setItem("chosenUser", chosenUser);
             }}
           >
-            <option selected="true" disabled="disabled">
-              Username
-            </option>
+            
             {userList && userList.map((item, index) => (
               <option key={index} value={item.id}>
                 {item.username}
