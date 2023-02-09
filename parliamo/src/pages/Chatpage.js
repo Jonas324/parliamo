@@ -51,10 +51,6 @@ function Chatpage(){
 
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      window.location.href = "/login";
-    } else {
       const fetchData = () => {
         fetch(`http://localhost:8080/message/${chosenUser}/${userId}`, requestOptionsSenderReceiver)
           .then((response) => response.json())
@@ -67,7 +63,7 @@ function Chatpage(){
       return () => {
         clearInterval(intervalId);
       };
-    }
+    
   }, []);
 
   var conversationFlatAndSorted = conversation ? conversation.flat(1) : [];

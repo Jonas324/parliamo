@@ -69,7 +69,7 @@ function Conversations(){
               localStorage.setItem("chosenUser", chosenUser);
             }}
           >
-            
+            <option>Välj en användare</option>
             {userList && userList.map((item, index) => (
               <option key={index} value={item.id}>
                 {item.username}
