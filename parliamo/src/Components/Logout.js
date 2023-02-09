@@ -13,7 +13,7 @@ function Logout() {
     <button
     onClick={logout}
   >
-  Logga ut
+  Sign out
   </button>
   )
 }

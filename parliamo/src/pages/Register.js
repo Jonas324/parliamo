@@ -57,7 +57,7 @@ function Register() {
             type="password" placeholder="*******"/>
             <button type="submit">Register User</button>
         </form>
-        <a href="/login">Logga in</a>
+        <a href="/login">Sign in</a>
     </>
   );
 }

@@ -51,7 +51,7 @@ function Conversations(){
               localStorage.setItem("chosenUser", chosenUser);
             }}
           >
-            <option>Välj en användare</option>
+            <option>Pick a user</option>
             {userList && userList.map((item) => (
               <option key={item.id} value={item.id}>
                 {item.username}

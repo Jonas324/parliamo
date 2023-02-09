@@ -6,9 +6,9 @@ function Welcome() {
     <div>
         Welcome to parliamo
         <p/>
-        <a href="/login">Logga in</a>
+        <a href="/login">Sign in</a>
         <p/>
-        <a href="/register">Registrer användare</a>
+        <a href="/register">Register user</a>
 
     </div>
   );

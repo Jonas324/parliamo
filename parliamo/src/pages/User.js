@@ -17,7 +17,7 @@ function UserData() {
 
   return (
     <>
-      <h1>Hej</h1>
+      <h1>Hello</h1>
       <h2>{localUser.username}</h2>
       <h2>{localUser.userId}</h2>
 
