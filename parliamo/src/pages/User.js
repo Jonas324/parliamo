@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Logout from "../Components/Logout";
 
 function UserData() {
-  const [user, setUser] = useState("");
-  const [data, setData] = useState("");
-  const [error, setError] = useState("");
 
   var localUser = localStorage.getItem("user");
   if (localUser) {
@@ -17,10 +14,6 @@ function UserData() {
         <a href="/readAllMessages">Message bank</a>
       </button>
     ) : null;
-
-  if (error) {
-    return <div>An error occurred: {error.message}</div>;
-  }
 
   return (
     <>

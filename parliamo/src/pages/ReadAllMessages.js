@@ -1,7 +1,4 @@
-import React from 'react'; 
-import { useState, useEffect } from 'react';
-
-
+import React, { useState, useEffect } from 'react'; 
 
 function ReadAllMessages(){
 
@@ -17,17 +14,17 @@ const requestOptions = {
 }
   
 useEffect(() => {
-  const fetchMessages = fetch("http://localhost:8080/message/getall", requestOptions)
-  fetchMessages.then((res) => res.json()).then((data) => {
+  fetch("http://localhost:8080/message/getall", requestOptions)
+  .then((res) => res.json()).then((data) => {
     setMessageList(data);
   });
-}, []);
+});
   
 return (
   <div>
 
-    {messageList.map((item, index) => (
-      <p key={index} value={item.id}>
+    {messageList.map((item) => (
+      <p key={item.id} value={item.id}>
         {item.content}
       </p>
     ))}

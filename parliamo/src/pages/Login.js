@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 
-function Login(props) {
+function Login() {
 
 const [username, setUsername] = useState('');
 const [password, setPassword] = useState('');

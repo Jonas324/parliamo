@@ -64,7 +64,7 @@ function Chatpage(){
         clearInterval(intervalId);
       };
     
-  }, []);
+  });
 
   var conversationFlatAndSorted = conversation ? conversation.flat(1) : [];
 
